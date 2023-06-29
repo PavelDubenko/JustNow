@@ -1,18 +1,19 @@
 fun main () {
-  val secondsAgo = 3660
-  val text = agoToText(secondsAgo)
+  val text = agoToText(360000)
   println(text)
 }
 
 fun agoToText(seconds: Int): String {
-    return when {
-        seconds <= 60 -> "был(а) только что"
-        seconds <= 60 * 60 -> "был ${minutesToText(seconds / 60)} назад"
-        seconds <= 24 * 60 * 60 -> "был ${hoursToText(seconds / (60 * 60))} назад"
-        seconds <= 2 * 24 * 60 * 60 -> "был вчера"
-        seconds <= 3 * 24 * 60 * 60 -> "был позавчера"
-        else -> "был давно"
+    val text: String
+    when {
+        seconds <= 60 -> text = "был(а) только что"
+        seconds <= 60 * 60 -> text = "был ${minutesToText(seconds / 60)} назад"
+        seconds <= 24 * 60 * 60 -> text = "был ${hoursToText(seconds / (60 * 60))} назад"
+        seconds <= 2 * 24 * 60 * 60 -> text = "был вчера"
+        seconds <= 3 * 24 * 60 * 60 -> text = "был позавчера"
+        else -> text = "был давно"
     }
+    return text
 }
 
 fun minutesToText(minutes: Int): String {
